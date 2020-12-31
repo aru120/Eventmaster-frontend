@@ -11,7 +11,7 @@ class EventList extends React.Component {
     }
 
     renderHomePageEvents = () => {
-        console.log(this.props.initialEvents["events"])
+       
         return this.props.initialEvents["events"].map(event => <EventCard key={event.id} eventObj={event} />)
     }
     render() {

@@ -11,3 +11,10 @@ export function initialFetch() {
         .catch(console.log)
     }
 }
+
+
+export function setUser(userObj){
+    return function(dispatch){    
+        dispatch({type: actionTypes.setUser, payload: userObj} )
+    }
+}
