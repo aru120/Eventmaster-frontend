@@ -32,7 +32,7 @@ function setUser(state =  defaultState.user_state, action){
 
 const rootReducer = combineReducers({
     initialEvents: homePageEvents,
-    user: setUser
+    user_state: setUser
 })
 
 export default rootReducer

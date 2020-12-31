@@ -10,21 +10,13 @@ class LogIn extends React.Component{
 
     }
 
-    holdState = () =>{
-       let currentstate = this.state
-        return currentstate
-    }
+  
 
     logInHandler =(e) => {
         e.preventDefault()
+
+        this.props.user(this.state)
         
-        this.props.user(this.holdState())
-
-
-        // fetch("http://localhost:3000/api/login", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
         //         accepts: "application/json"
         //     },
         //     body: JSON.stringify({user: this.state})
@@ -55,7 +47,7 @@ class LogIn extends React.Component{
 function mdp(dispatch){
     return(
         {
-        user: () => dispatch(setUser({user:this.state}))
+        user: (userObj) => dispatch(setUser(userObj))
     }
     )
 }
