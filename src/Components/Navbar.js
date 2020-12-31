@@ -4,6 +4,10 @@ import React from 'react'
 
 class Navbar extends React.Component {
 
+    logout = ()=>{
+            
+    }
+
     render(){
         console.log(this.props)
         return (
@@ -13,7 +17,9 @@ class Navbar extends React.Component {
                     <h5> Home Page </h5>
                 </NavLink>
           
-    {this.props.user_state ? <h5>{this.props.user_state.user.name}</h5> :
+    {this.props.user_state ? 
+
+            <h5>{this.props.user_state.user.name}</h5> :
             <>
              <NavLink to="/signup">
                     <h5> Sign Up </h5>

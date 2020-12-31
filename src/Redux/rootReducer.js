@@ -18,16 +18,21 @@ function homePageEvents(state = defaultState.initialEvents, action) {
 };
 
 function setUser(state =  defaultState.user_state, action){
+    console.log("IN SET USER", action)
     switch(action.type){
         case "SET_USER":
-        console.log("setUser", action)
         return action.payload;
         break;
+        case "UPDATE_USER":
+        return action.payload;
+        break;    
         default:
             return state
             break;
     }
 }
+
+
 
 
 const rootReducer = combineReducers({

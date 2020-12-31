@@ -7,7 +7,12 @@ import { Route, Switch } from 'react-router-dom'
 class EventList extends React.Component {
 
     componentDidMount() {
-        this.props.initialFetch()
+
+        if(this.props.user_state){
+          this.props.initialFetch(this.props.user_state.user.zipcode)  
+        }else{
+            this.props.initialFetch()
+        }
     }
 
     renderHomePageEvents = () => {
@@ -15,6 +20,7 @@ class EventList extends React.Component {
         return this.props.initialEvents["events"].map(event => <EventCard key={event.id} eventObj={event} />)
     }
     render() {
+        // console.log("IN EVENT LIST",this.props.user_state.user.zipcode)
         return (
             <>
                 <Switch>
@@ -56,12 +62,13 @@ class EventList extends React.Component {
 function msp(state) {
     return ({
                     initialEvents: state.initialEvents,
+                    user_state: state.user_state
     })
 }
 function mdp(dispatch) {
     return (
                 {
-                    initialFetch: () => dispatch(initialFetch())
+                    initialFetch: (zipcode) => dispatch(initialFetch(zipcode))
         }
     )
 }
