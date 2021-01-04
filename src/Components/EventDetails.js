@@ -1,4 +1,6 @@
 import React from 'react'
+import {connect} from 'react-redux'
+
 
 class EventDetails extends React.Component {
 
@@ -29,21 +31,47 @@ class EventDetails extends React.Component {
 
     saveEventHandler = () => {
         const eventObject = this.props.eventObj
+        console.log(eventObject)
+
+       const eventObj = {
+            title: eventObject.name,
+            date: eventObject.dates.start["localDate"],
+            image: eventObject.images,
+            ticketmasterid: eventObject.id
+        }
+
+        // console.log(eventObject)
         fetch ('http://localhost:3000/api/events',{
             method:"POST",
             headers:{
                accepts: "application/json",
                "content-type": "application/json"
                 },
-                body: JSON.stringify(eventObject)
+                body: JSON.stringify(eventObj)
             })
                 .then(response => response.json())
                 .then(data =>{
-                    console.log(data)
+                    return fetch('http://localhost:3000/api/user_events',{
+                        method:"POST",
+                        headers:{
+                           accepts: "application/json",
+                           "content-type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                user_id: this.props.user_state.user.id,
+                                event_id: data.id
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(savedEventData => {
+                            console.log("User Event Data:", savedEventData)
+                        })
+                        .catch(console.log)
                 })
     }
 
     render() {
+        
         return (
             <div>
                 <>
@@ -56,7 +84,8 @@ class EventDetails extends React.Component {
 
                     <button onClick={this.clickHandler} >Buy Tickets</button>
 
-                    <button onClick={this.saveEventHandler}>Save This Event</button>
+                    {localStorage.getItem("token") ? <button onClick={this.saveEventHandler}>Save This Event</button> : null}
+                   
                 </>
 
 
@@ -64,5 +93,10 @@ class EventDetails extends React.Component {
         )
     }
 }
+function msp(state){
+    return({
+        user_state: state.user_state
+    })
+}
 
-export default EventDetails
+export default connect(msp)(EventDetails)

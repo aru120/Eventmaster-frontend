@@ -5,6 +5,7 @@ import { initialFetch } from '../Redux/actions';
 import { Route, Switch } from 'react-router-dom'
 import EventDetails from '../Components/EventDetails';
 
+
 class EventList extends React.Component {
 
     componentDidMount() {
@@ -18,7 +19,7 @@ class EventList extends React.Component {
 
     renderHomePageEvents = () => {
        if (this.props.initialEvents["events"]){
-           return this.props.initialEvents["events"].map(event => <EventCard key={event.id} eventObj={event} />)
+           return this.props.initialEvents["events"].map(event => <EventCard key={event.id} eventId={event.id} eventObj={event} eventName={event.name} eventImage={event.images[0].url} />)
        }
        else {
            return <h2>No Events Nearby</h2>

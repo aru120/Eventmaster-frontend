@@ -41,7 +41,9 @@ export function setUser(userObj){
             })
                 .then(response => response.json())
                 .then(data =>{
+                    console.log("LOCAL STORAGE", data)
                     localStorage.setItem("token", data.jwt)
+                    localStorage.setItem("user_id", data.user.id)
                     dispatch({type: actionTypes.setUser, payload: data})
                 })
                 
