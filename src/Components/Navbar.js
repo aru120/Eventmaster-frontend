@@ -18,7 +18,7 @@ class Navbar extends React.Component {
                 </NavLink>
           
     {this.props.user_state ? 
-
+            
             <h5>{this.props.user_state.user.name}</h5> :
             <>
              <NavLink to="/signup">

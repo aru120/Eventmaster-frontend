@@ -6,25 +6,27 @@ export function initialFetch(zipcode) {
     let URL = ""
     console.log("BBBBbBBBB",zipcode)
     if (zipcode){
-        URL = `https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&postalCode=${zipcode}&locale=*&countryCode=US&segmentName=music&apikey=${api}`
+        URL = `https://app.ticketmaster.com/discovery/v2/events.json?postalCode=${zipcode}&locale=*&countryCode=US&segmentName=music&apikey=${api}`
     }
     else {
         URL = `https://app.ticketmaster.com/discovery/v2/events.json?city=New%20York&countryCode=US&segmentName=music&apikey=${api}`
     }
     return function (dispatch) {
+        // console.log(URL)
         fetch (URL)
         .then(response => response.json())
         .then(eventsData => {
+            if(eventsData["_embedded"]){
             dispatch({type: actionTypes.initialFetch, payload: eventsData["_embedded"]})
             console.log(eventsData["_embedded"])
+            }
+            else {
+                dispatch({type: actionTypes.noEvent, payload: null})
+            }
         })
         .catch(console.log)
     }
 }
-
-
-
-
 
 
 export function setUser(userObj){

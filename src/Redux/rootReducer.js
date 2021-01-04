@@ -1,31 +1,35 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 const defaultState = {
     initialEvents: [],
     user_state: null,
-    savedEvents: []
+    savedEvents: [],
+    
 }
 
 function homePageEvents(state = defaultState.initialEvents, action) {
     switch (action.type) {
         case "INITIAL_FETCH":
-            // console.log(action)
-            return action.payload;
-            break;
+            // console.log("Action:",action)
+                console.log("this is running")
+                return action.payload;
+                break;
+        case "NO_EVENT":
+            return []
         default:
             return state
             break;
     }
 };
 
-function setUser(state =  defaultState.user_state, action){
+function setUser(state = defaultState.user_state, action) {
     console.log("IN SET USER", action)
-    switch(action.type){
+    switch (action.type) {
         case "SET_USER":
-        return action.payload;
-        break;
+            return action.payload;
+            break;
         case "UPDATE_USER":
-        return action.payload;
-        break;    
+            return action.payload;
+            break;
         default:
             return state
             break;

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import EventCard from '../Components/EventCard'
 import { initialFetch } from '../Redux/actions';
 import { Route, Switch } from 'react-router-dom'
+import EventDetails from '../Components/EventDetails';
 
 class EventList extends React.Component {
 
@@ -16,9 +17,15 @@ class EventList extends React.Component {
     }
 
     renderHomePageEvents = () => {
-       
-        return this.props.initialEvents["events"].map(event => <EventCard key={event.id} eventObj={event} />)
+       if (this.props.initialEvents["events"]){
+           return this.props.initialEvents["events"].map(event => <EventCard key={event.id} eventObj={event} />)
+       }
+       else {
+           return <h2>No Events Nearby</h2>
+       }
     }
+
+
     render() {
         // console.log("IN EVENT LIST",this.props.user_state.user.zipcode)
         return (
@@ -32,7 +39,7 @@ class EventList extends React.Component {
                          
                         let event
                         if (foundEventObj) {
-                            event = <EventCard key={foundEventObj.id} eventObj={foundEventObj} />
+                            event = <EventDetails key={foundEventObj.id} eventObj={foundEventObj} />
                         }
                         else {
                             event = <h2>Loading...</h2>
@@ -44,7 +51,7 @@ class EventList extends React.Component {
                     <Route path="/get_events" render={() => {
                         return (
                             <>
-                                {!(this.props.initialEvents["events"]) ? <h1>Loading...</h1> :
+                                {!(this.props.initialEvents) ? <h1>Loading...</h1> :
                                     <>
                                         <h1> Hello </h1>
                                         {this.renderHomePageEvents()}
