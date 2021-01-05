@@ -21,7 +21,7 @@ class SavedEvents extends React.Component {
     }
 
     renderSavedEvents = () => {
-        return this.state.saved_events.map(event => <EventCard key={event.ticketmasterid} eventId={event.ticketmasterid} eventDate={event.date} eventName={event.title} eventImage={event.image} />)
+        return this.state.saved_events.map(event => <EventCard eventObj={event}key={event.ticketmasterid} eventId={event.ticketmasterid} eventDate={event.date} eventName={event.title} eventImage={event.image} />)
     }
 
     render() {
@@ -29,7 +29,7 @@ class SavedEvents extends React.Component {
         return (
             <>
                 <h1>Saved Events </h1>
-                {this.state.saved_events.length === 0 ? <h2>Loading Saved Events...</h2> :
+                {this.state.saved_events.length === 0 ? null :
                     <>
                         {this.renderSavedEvents()}
                     </>

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 const defaultState = {
     initialEvents: [],
     user_state: null,
-    savedEvents: [],
+    savedEvents: []
     
 }
 
@@ -36,12 +36,39 @@ function setUser(state = defaultState.user_state, action) {
     }
 }
 
+// function addFavorite(state = defaultState.savedEvents, action){
+//     switch(action.type){
+//         case "ADD_FAVORITES":
+//             console.log("Add Favorites Action Payload:", action.payload)
+//             return action.payload;
+//             break;
+//         default:
+//             return state
+//             break;
+//     }
+// }
+
+
+function addFavorite(state = defaultState.savedEvents, action) {
+    
+    switch (action.type) {
+        case "ADD_FAVORITES":
+             
+            return [...state, action.payload]
+            break;
+        default:
+            return state
+            break;
+    }
+}
+
 
 
 
 const rootReducer = combineReducers({
     initialEvents: homePageEvents,
-    user_state: setUser
+    user_state: setUser,
+    savedEvents: addFavorite
 })
 
 export default rootReducer

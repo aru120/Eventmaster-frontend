@@ -16,7 +16,7 @@ class EventCard extends React.Component {
     render() {
         return (
             <div>
-                <NavLink to={`/get_events/${this.props.eventId}`} onClick={this.localClickHandler} >
+                <NavLink to={`/get_events/${this.props.eventId}`}  >
                     <h1 >{this.props.eventName}</h1>
                     <img src={this.props.eventImage} style={{ maxWidth: "200px", maxHeight: "115px" }} />
                 </NavLink>

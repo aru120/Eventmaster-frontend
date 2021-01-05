@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {addFavorite} from '../Redux/actions'
 
 
 class EventDetails extends React.Component {
@@ -32,13 +33,21 @@ class EventDetails extends React.Component {
     saveEventHandler = () => {
         const eventObject = this.props.eventObj
         console.log(eventObject)
+        
+
+        let artistArray = eventObject["_embedded"].attractions.map(artist => artist.name)
+        console.log("SAVED EVENTS",artistArray)
 
        const eventObj = {
             title: eventObject.name,
             date: eventObject.dates.start["localDate"],
-            image: eventObject.images,
-            ticketmasterid: eventObject.id
+            image: eventObject.images[0].url,
+            ticketmasterid: eventObject.id,
+            time: eventObject.dates.start["localTime"],
+            artists: artistArray
+
         }
+
 
         // console.log(eventObject)
         fetch ('http://localhost:3000/api/events',{
@@ -51,6 +60,8 @@ class EventDetails extends React.Component {
             })
                 .then(response => response.json())
                 .then(data =>{
+                    this.props.addToFavs(data)
+
                     return fetch('http://localhost:3000/api/user_events',{
                         method:"POST",
                         headers:{
@@ -72,7 +83,11 @@ class EventDetails extends React.Component {
 
     deleteSavedEventHandler = () => {
         const eventObject = this.props.eventObj
-        fetch (`http://localhost:3000/api/events/${eventObject.id}`, {
+           
+
+      let foundObj =  this.props.savedEvents.find(event => event.ticketmasterid === eventObject.id)
+      console.log("foundOBJ",foundObj)
+        fetch (`http://localhost:3000/api/events/${foundObj.id}`, {
             method: "DELETE"
         })
         .then(response => response.json())
@@ -81,22 +96,22 @@ class EventDetails extends React.Component {
     }
 
     render() {
-        
+        console.log(this.props.savedEvents)
         return (
             <div>
                 <>
-                    <h1>{this.props.eventObj.name}</h1>
-                    <img src={this.props.eventObj.images[0].url} style={{ maxWidth: "200px", maxHeight: "115px" }} />
-                    <h5>{this.dateHandler(this.props.eventObj.dates.start["localDate"])}</h5>
-                    <h5>{this.timeHandler(this.props.eventObj.dates.start["localTime"])}</h5>
+                    <h1>{this.props.eventName}</h1>
+                    <img src={this.props.eventImg} style={{ maxWidth: "200px", maxHeight: "115px" }} />
+                    <h5>{this.dateHandler(this.props.eventDate)}</h5>
+                    <h5>{this.timeHandler(this.props.eventTime)}</h5>
 
-                    <h3>{this.props.eventObj["_embedded"].attractions.map(artist => <p> {artist.name} </p>)}</h3>
+                    <h3>{this.props.attractions.map(artist => <p> {artist} </p>)}</h3>
 
                     <button onClick={this.clickHandler} >Buy Tickets</button>
 
 
                     {localStorage.getItem("token") ? <button onClick={this.saveEventHandler}>Save This Event</button> : null}
-                    <button> Remove Saved Event</button>
+                    <button onClick={this.deleteSavedEventHandler}> Remove Saved Event</button>
                 </>
 
 
@@ -106,8 +121,17 @@ class EventDetails extends React.Component {
 }
 function msp(state){
     return({
-        user_state: state.user_state
+        user_state: state.user_state,
+        savedEvents: state.savedEvents
     })
 }
 
-export default connect(msp)(EventDetails)
+function mdp(dispatch){
+    return(
+        {
+        addToFavs: (eventObj) => dispatch(addFavorite(eventObj))
+    }
+    )
+}
+
+export default connect(msp,mdp)(EventDetails)

@@ -1,4 +1,6 @@
 import actionTypes from './actionTypes';
+import history from '../History/history'
+import { withRouter } from 'react-router-dom'
 
 
 export function initialFetch(zipcode) {
@@ -45,13 +47,22 @@ export function setUser(userObj){
                     localStorage.setItem("token", data.jwt)
                     localStorage.setItem("user_id", data.user.id)
                     dispatch({type: actionTypes.setUser, payload: data})
+
                 })
+                
                 
 }}
 
 export function updateUser(userObj){
     return function(dispatch){
         dispatch({type: actionTypes.updateUser, payload: userObj})
+    }
+}
+
+export function addFavorite(eventObj){
+    // console.log("INSIDE ADDFAVORITE",eventObj)
+    return function(dispatch){
+        dispatch({type: actionTypes.addFavorite, payload: eventObj})
     }
 }
 

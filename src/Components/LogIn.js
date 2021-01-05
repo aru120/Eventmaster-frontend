@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {setUser} from '../Redux/actions'
+import { Redirect } from 'react-router-dom'
+import history from '../History/history'
+import { withRouter } from 'react-router'
 
 class LogIn extends React.Component{
 
@@ -24,7 +27,7 @@ class LogIn extends React.Component{
         //     .then(response => response.json())
         //     .then(console.log)
         //     .catch(console.log)
-
+        history.push("/get_events")
 
     }
 
