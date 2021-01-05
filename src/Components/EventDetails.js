@@ -70,6 +70,16 @@ class EventDetails extends React.Component {
                 })
     }
 
+    deleteSavedEventHandler = () => {
+        const eventObject = this.props.eventObj
+        fetch (`http://localhost:3000/api/events/${eventObject.id}`, {
+            method: "DELETE"
+        })
+        .then(response => response.json())
+        .then(console.log)
+        .catch(console.log)
+    }
+
     render() {
         
         return (
@@ -84,8 +94,9 @@ class EventDetails extends React.Component {
 
                     <button onClick={this.clickHandler} >Buy Tickets</button>
 
+
                     {localStorage.getItem("token") ? <button onClick={this.saveEventHandler}>Save This Event</button> : null}
-                   
+                    <button> Remove Saved Event</button>
                 </>
 
 

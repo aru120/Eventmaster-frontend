@@ -19,7 +19,7 @@ class EventList extends React.Component {
 
     renderHomePageEvents = () => {
        if (this.props.initialEvents["events"]){
-           return this.props.initialEvents["events"].map(event => <EventCard key={event.id} eventId={event.id} eventObj={event} eventName={event.name} eventImage={event.images[0].url} />)
+           return this.props.initialEvents["events"].map(event => <EventCard key={event.id} eventId={event.id} eventDate={event.dates.start["localDate"]} eventObj={event} eventName={event.name} eventImage={event.images[0].url} />)
        }
        else {
            return <h2>No Events Nearby</h2>

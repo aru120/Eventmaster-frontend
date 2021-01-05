@@ -1,11 +1,13 @@
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import React from 'react'
+import SearchBar from './SearchBar'
 
 class Navbar extends React.Component {
 
-    logout = ()=>{
-            
+    logoutHandler = () =>{
+        localStorage.clear()
+        window.location.href = '/get_events'
     }
 
     render(){
@@ -16,6 +18,7 @@ class Navbar extends React.Component {
                 <NavLink to="/get_events">
                     <h5> Home Page </h5>
                 </NavLink>
+                <SearchBar />
           
     {this.props.user_state ? 
             <>
@@ -23,6 +26,9 @@ class Navbar extends React.Component {
             <NavLink to="/saved_events">
                 <h5> Saved Events </h5>
             </NavLink>
+
+            <button onClick={this.logoutHandler}> Log Out </button>
+
             </>
             :
             <>
