@@ -18,8 +18,11 @@ export function initialFetch(zipcode) {
         fetch (URL)
         .then(response => response.json())
         .then(eventsData => {
+            console.log("eventsData", eventsData["_embedded"].events)
             if(eventsData["_embedded"]){
-            dispatch({type: actionTypes.initialFetch, payload: eventsData["_embedded"]})
+
+         const convertedData = convertTicketMaster(eventsData["_embedded"].events)
+            dispatch({type: actionTypes.initialFetch, payload: convertedData})
             console.log(eventsData["_embedded"])
             }
             else {
@@ -28,6 +31,24 @@ export function initialFetch(zipcode) {
         })
         .catch(console.log)
     }
+}
+
+function convertTicketMaster(array){
+    let newArr = []
+   array.forEach(eventObj => {
+       console.log("CONVERTER",eventObj)
+     let artistName =  eventObj["_embedded"].attractions.map(artist => artist.name)
+     let obj =   {
+           ticketmasterid: eventObj.id,
+           title: eventObj.name,
+           image: eventObj.images[0].url,
+           artists: artistName,
+           date: eventObj.dates.start["localDate"],
+           time: eventObj.dates.start["localTime"]
+       }
+       newArr.push(obj)
+   } )
+   return newArr
 }
 
 
@@ -41,14 +62,21 @@ export function setUser(userObj){
                 },
                 body: JSON.stringify({user: userObj})
             })
-                .then(response => response.json())
-                .then(data =>{
-                    console.log("LOCAL STORAGE", data)
-                    localStorage.setItem("token", data.jwt)
-                    localStorage.setItem("user_id", data.user.id)
-                    dispatch({type: actionTypes.setUser, payload: data})
-
-                })
+            .then(response => response.json())
+            .then(data =>{
+                console.log("LOCAL STORAGE", data)
+                localStorage.setItem("token", data.jwt)
+                localStorage.setItem("user_id", data.user.id)
+                dispatch({type: actionTypes.setUser, payload: data})
+                
+                return fetch(`http://localhost:3000/api/users/${data.user.id}`)
+                    .then(r => r.json())
+                    .then(userData => {
+                        dispatch({type: actionTypes.addFavorite, payload: userData.events})
+                    })
+                
+            })
+                
                 
                 
 }}

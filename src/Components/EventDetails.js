@@ -96,7 +96,7 @@ class EventDetails extends React.Component {
     }
 
     render() {
-        console.log(this.props.savedEvents)
+        console.log("localSTorage",localStorage.getItem("savedEvents"))
         return (
             <div>
                 <>

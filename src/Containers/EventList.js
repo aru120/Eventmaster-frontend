@@ -4,6 +4,7 @@ import EventCard from '../Components/EventCard'
 import { initialFetch } from '../Redux/actions';
 import { Route, Switch } from 'react-router-dom'
 import EventDetails from '../Components/EventDetails';
+import {addFavorite} from '../Redux/actions'
 
 
 class EventList extends React.Component {
@@ -15,11 +16,26 @@ class EventList extends React.Component {
         }else{
             this.props.initialFetch()
         }
+
+        const data = localStorage.getItem("savedEvents")
+        
+        if(data){
+          const parsedData = JSON.parse(data)
+          console.log(data)
+            this.props.addToFavs(parsedData)
+        }
+
+
     }
 
+   
+
     renderHomePageEvents = () => {
-       if (this.props.initialEvents["events"]){
-           return this.props.initialEvents["events"].map(event => <EventCard key={event.id} eventId={event.id} eventObj={event} eventDate={event.dates.start["localDate"]} eventObj={event} eventName={event.name} eventImage={event.images[0].url} />)
+
+
+       if (this.props.initialEvents){
+
+           return this.props.initialEvents.map(event => <EventCard key={event.id} eventId={event.id} eventObj={event} eventDate={event.dates.start["localDate"]} eventObj={event} eventName={event.name} eventImage={event.images[0].url} />)
        }
        else {
            return <h2>No Events Nearby</h2>
@@ -41,6 +57,8 @@ class EventList extends React.Component {
                         console.log("1",this.props.initialEvents["events"])
                         console.log("2",this.props.savedEvents)
 
+
+
                         if(this.props.initialEvents["events"]){
                             eventId = (routerProps.match.params.id)
                             foundEventObj = this.props.initialEvents["events"].find(event => event.id === eventId)
@@ -51,6 +69,8 @@ class EventList extends React.Component {
                             favEventObj = this.props.savedEvents.find(event => event.ticketmasterid === eventId)
                         }
 
+                        let mergeArray = this.props.initialEvents["events"].concat(this.props.savedEvents[0])
+                        console.log("MERGE ARRAY", mergeArray)
                     //    console.log("ticketmasterid",eventId)
                     //    console.log("foundEventObj",foundEventObj)
                     //    console.log("foundfavoriteObj", favEventObj)
@@ -106,7 +126,9 @@ function msp(state) {
 function mdp(dispatch) {
     return (
                 {
-                    initialFetch: (zipcode) => dispatch(initialFetch(zipcode))
+                    initialFetch: (zipcode) => dispatch(initialFetch(zipcode)),
+                    addToFavs: (eventObj) => dispatch(addFavorite(eventObj))
+
         }
     )
 }

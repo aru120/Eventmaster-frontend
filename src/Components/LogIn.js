@@ -4,6 +4,7 @@ import {setUser} from '../Redux/actions'
 import { Redirect } from 'react-router-dom'
 import history from '../History/history'
 import { withRouter } from 'react-router'
+import {addFavorite} from '../Redux/actions'
 
 class LogIn extends React.Component{
 
@@ -20,13 +21,8 @@ class LogIn extends React.Component{
 
         this.props.user(this.state)
         
-        //         accepts: "application/json"
-        //     },
-        //     body: JSON.stringify({user: this.state})
-        // })
-        //     .then(response => response.json())
-        //     .then(console.log)
-        //     .catch(console.log)
+       
+
         history.push("/get_events")
 
     }
@@ -50,10 +46,13 @@ class LogIn extends React.Component{
 function mdp(dispatch){
     return(
         {
-        user: (userObj) => dispatch(setUser(userObj))
+        user: (userObj) => dispatch(setUser(userObj)),
+        addToFavs: (eventObj) => dispatch(addFavorite(eventObj))
     }
     )
 }
 
 
 export default connect(null,mdp)(LogIn)
+
+

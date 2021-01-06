@@ -2,34 +2,35 @@ import React from 'react'
 import { connect } from 'react-redux'
 import EventCard from './EventCard'
 
+
+
 class SavedEvents extends React.Component {
 
-    state = {
-        saved_events: []
-    }
+ 
 
-    componentDidMount() {
+    // componentDidMount() {
+        
+    //     // const user_id = localStorage.getItem("user_id")
 
-        const user_id = localStorage.getItem("user_id")
+    //     // fetch(`http://localhost:3000/api/users/${user_id}`)
+    //     //     .then(r => r.json())
+    //     //     .then(data => {
+    //     //         this.props.addToFavs(data.events)
+    //     //     })
 
-        fetch(`http://localhost:3000/api/users/${user_id}`)
-            .then(r => r.json())
-            .then(data => {
-                this.setState({ saved_events: data.events })
-            })
-
-    }
+    // }
 
     renderSavedEvents = () => {
-        return this.state.saved_events.map(event => <EventCard eventObj={event}key={event.ticketmasterid} eventId={event.ticketmasterid} eventDate={event.date} eventName={event.title} eventImage={event.image} />)
+        return this.props.savedEvents[0].map(event =>  <EventCard eventObj={event}key={event.ticketmasterid} eventId={event.ticketmasterid} eventDate={event.date} eventName={event.title} eventImage={event.image} />)
     }
 
+
+
     render() {
-        console.log("SAVED EVENTS",this.state.saved_events)
         return (
             <>
                 <h1>Saved Events </h1>
-                {this.state.saved_events.length === 0 ? null :
+                {this.props.savedEvents.length === 0 ? null :
                     <>
                         {this.renderSavedEvents()}
                     </>
@@ -41,7 +42,17 @@ class SavedEvents extends React.Component {
 
 function msp(state) {
     return ({
-        user_state: state.user_state
+        user_state: state.user_state,
+        savedEvents: state.savedEvents
     })
 }
+
+// function mdp(dispatch){
+//     return(
+//         {
+//         addToFavs: (eventObj) => dispatch(addFavorite(eventObj))
+//     }
+//     )
+// }
 export default connect(msp)(SavedEvents)
+

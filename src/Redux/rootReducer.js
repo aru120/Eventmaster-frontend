@@ -36,25 +36,13 @@ function setUser(state = defaultState.user_state, action) {
     }
 }
 
-// function addFavorite(state = defaultState.savedEvents, action){
-//     switch(action.type){
-//         case "ADD_FAVORITES":
-//             console.log("Add Favorites Action Payload:", action.payload)
-//             return action.payload;
-//             break;
-//         default:
-//             return state
-//             break;
-//     }
-// }
 
 
 function addFavorite(state = defaultState.savedEvents, action) {
     
     switch (action.type) {
         case "ADD_FAVORITES":
-             
-            return [...state, action.payload]
+            return [...state,action.payload]
             break;
         default:
             return state
