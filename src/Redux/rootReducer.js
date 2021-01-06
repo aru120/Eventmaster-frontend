@@ -3,16 +3,16 @@ const defaultState = {
     initialEvents: [],
     user_state: null,
     savedEvents: []
-    
+
 }
 
 function homePageEvents(state = defaultState.initialEvents, action) {
     switch (action.type) {
         case "INITIAL_FETCH":
             // console.log("Action:",action)
-                console.log("this is running")
-                return action.payload;
-                break;
+            console.log("this is running")
+            return action.payload;
+            break;
         case "NO_EVENT":
             return []
         default:
@@ -39,10 +39,17 @@ function setUser(state = defaultState.user_state, action) {
 
 
 function addFavorite(state = defaultState.savedEvents, action) {
-    
+
     switch (action.type) {
+        case "MAKE_FAVORITES":
+            return action.payload;
+            break;
         case "ADD_FAVORITES":
-            return [...state,action.payload]
+            return [...state, action.payload]
+            break;
+        case "DELETE_FAVORITE":
+            console.log(action.payload)
+            return [...state].filter(event => event.id !== action.payload)
             break;
         default:
             return state

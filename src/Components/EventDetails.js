@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addFavorite} from '../Redux/actions'
+import {deleteFavorite} from '../Redux/actions'
 
 
 class EventDetails extends React.Component {
@@ -35,16 +36,16 @@ class EventDetails extends React.Component {
         console.log(eventObject)
         
 
-        let artistArray = eventObject["_embedded"].attractions.map(artist => artist.name)
-        console.log("SAVED EVENTS",artistArray)
+        // let artistArray = eventObject["_embedded"].attractions.map(artist => artist.name)
+        // console.log("SAVED EVENTS",artistArray)
 
        const eventObj = {
-            title: eventObject.name,
-            date: eventObject.dates.start["localDate"],
-            image: eventObject.images[0].url,
-            ticketmasterid: eventObject.id,
-            time: eventObject.dates.start["localTime"],
-            artists: artistArray
+            title: eventObject.title,
+            date: eventObject.date,
+            image: eventObject.image,
+            ticketmasterid: eventObject.ticketmasterid,
+            time: eventObject.time,
+            artists: eventObject.artists
 
         }
 
@@ -83,29 +84,30 @@ class EventDetails extends React.Component {
 
     deleteSavedEventHandler = () => {
         const eventObject = this.props.eventObj
-           
+           console.log(eventObject.id)
 
-      let foundObj =  this.props.savedEvents.find(event => event.ticketmasterid === eventObject.id)
+      let foundObj =  this.props.savedEvents.find(event => event.id === eventObject.id)
       console.log("foundOBJ",foundObj)
         fetch (`http://localhost:3000/api/events/${foundObj.id}`, {
             method: "DELETE"
         })
-        .then(response => response.json())
-        .then(console.log)
+        .then(this.props.deleteFav(foundObj)
+        )
         .catch(console.log)
     }
 
     render() {
-        console.log("localSTorage",localStorage.getItem("savedEvents"))
+        console.log("localStorage",localStorage.getItem("savedEvents"))
         return (
             <div>
                 <>
-                    <h1>{this.props.eventName}</h1>
-                    <img src={this.props.eventImg} style={{ maxWidth: "200px", maxHeight: "115px" }} />
-                    <h5>{this.dateHandler(this.props.eventDate)}</h5>
-                    <h5>{this.timeHandler(this.props.eventTime)}</h5>
+                    <h1>{this.props.eventObj.title}</h1>
+                    <img src={this.props.eventObj.image} style={{ maxWidth: "200px", maxHeight: "115px" }} />
+                    <h5>{this.dateHandler(this.props.eventObj.date)}</h5>
+                    <h5>{this.timeHandler(this.props.eventObj.time)}</h5>
 
-                    <h3>{this.props.attractions.map(artist => <p> {artist} </p>)}</h3>
+                    { this.props.eventObj.artists.length === 0 ? null : <h3>{this.props.eventObj.artists.map(artist => <p> {artist} </p>)}</h3> }
+                    
 
                     <button onClick={this.clickHandler} >Buy Tickets</button>
 
@@ -129,7 +131,8 @@ function msp(state){
 function mdp(dispatch){
     return(
         {
-        addToFavs: (eventObj) => dispatch(addFavorite(eventObj))
+        addToFavs: (eventObj) => dispatch(addFavorite(eventObj)),
+        deleteFav: (eventObj) => dispatch(deleteFavorite(eventObj))
     }
     )
 }

@@ -21,12 +21,14 @@ class SavedEvents extends React.Component {
     // }
 
     renderSavedEvents = () => {
-        return this.props.savedEvents[0].map(event =>  <EventCard eventObj={event}key={event.ticketmasterid} eventId={event.ticketmasterid} eventDate={event.date} eventName={event.title} eventImage={event.image} />)
+        console.log(this.props.savedEvents)
+        return this.props.savedEvents.map(event =>  <EventCard eventObj={event} key={event.id} />)
     }
 
 
 
     render() {
+        console.log(this.props.savedEvents)
         return (
             <>
                 <h1>Saved Events </h1>

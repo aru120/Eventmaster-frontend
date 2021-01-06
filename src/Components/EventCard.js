@@ -16,11 +16,11 @@ class EventCard extends React.Component {
     render() {
         return (
             <div>
-                <NavLink to={`/get_events/${this.props.eventId}`}  >
-                    <h1 >{this.props.eventName}</h1>
-                    <img src={this.props.eventImage} style={{ maxWidth: "200px", maxHeight: "115px" }} />
+                <NavLink to={`/get_events/${this.props.eventObj.ticketmasterid}`}  >
+                    <h1 >{this.props.eventObj.title}</h1>
+                    <img src={this.props.eventObj.image} style={{ maxWidth: "200px", maxHeight: "115px" }} />
                 </NavLink>
-                    <h3> Date: {this.dateHandler(this.props.eventDate)}</h3>
+                    <h3> Date: {this.dateHandler(this.props.eventObj.date)}</h3>
             </div>
         )
     }
