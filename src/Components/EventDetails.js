@@ -84,10 +84,10 @@ class EventDetails extends React.Component {
 
     deleteSavedEventHandler = () => {
         const eventObject = this.props.eventObj
-           console.log(eventObject.id)
+           console.log(eventObject.ticketmasterid)
 
-      let foundObj =  this.props.savedEvents.find(event => event.id === eventObject.id)
-      console.log("foundOBJ",foundObj)
+      let foundObj =  this.props.savedEvents.find(event => event.ticketmasterid === eventObject.ticketmasterid)
+    //   console.log("foundOBJ",foundObj)
         fetch (`http://localhost:3000/api/events/${foundObj.id}`, {
             method: "DELETE"
         })

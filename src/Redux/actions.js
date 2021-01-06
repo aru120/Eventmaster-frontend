@@ -18,7 +18,7 @@ export function initialFetch(zipcode) {
         fetch(URL)
             .then(response => response.json())
             .then(eventsData => {
-                // console.log("eventsData", eventsData["_embedded"].events)
+                console.log("eventsData", eventsData["_embedded"].events)
                 if (eventsData["_embedded"]) {
 
                     const convertedData = convertTicketMaster(eventsData["_embedded"].events)

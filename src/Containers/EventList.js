@@ -42,6 +42,18 @@ class EventList extends React.Component {
         }
     }
 
+    filterArray = (array)=>{
+        let flag = {}
+        let arr = []
+        array.forEach(eventObj => {
+            if (!flag[eventObj.ticketmasterid]){
+                flag[eventObj.ticketmasterid] = true;
+                arr.push(eventObj)
+            }
+        } )
+        return arr
+    }
+
 
     render() {
         // console.log("IN EVENT LIST",this.props.user_state.user.zipcode)
@@ -50,9 +62,8 @@ class EventList extends React.Component {
                 <Switch>
                     <Route path="/get_events/:id" render={(routerProps) => {
                         console.log("Router Props:", routerProps)
-                        let foundEventObj
-                        let favEventObj
-                        // let mergeEventObj
+                        
+                        let mergeEventObj
                         let eventId
 
                         console.log("1", this.props.initialEvents)
@@ -61,22 +72,25 @@ class EventList extends React.Component {
                         const listOfEvents = this.props.initialEvents
                         const listOfSavedEvents = this.props.savedEvents
 
-                        // if (listOfEvents && listOfSavedEvents) {
+                        if (listOfEvents && listOfSavedEvents) {
+                            eventId = (routerProps.match.params.id)
+                            let mergeArray = listOfEvents.concat(listOfSavedEvents)
+                            console.log("MERGE ARRAY", mergeArray)
+
+                            let newMergeArr = this.filterArray(mergeArray)
+                            console.log('NEW MERGE ARRAY:', newMergeArr)
+                            mergeEventObj = newMergeArr.find(event => event.ticketmasterid === eventId)
+                        }
+
+                        // if (listOfEvents) {
                         //     eventId = (routerProps.match.params.id)
-                        //     let mergeArray = listOfEvents.concat(listOfSavedEvents)
-                        //     console.log("MERGE ARRAY", mergeArray)
-                        //     mergeEventObj = mergeArray.find(event => event.ticketmasterid === eventId)
+                        //     foundEventObj = listOfEvents.find(event => event.ticketmasterid === eventId)
                         // }
 
-                        if (listOfEvents) {
-                            eventId = (routerProps.match.params.id)
-                            foundEventObj = listOfEvents.find(event => event.ticketmasterid === eventId)
-                        }
-
-                        if (listOfSavedEvents) {
-                            eventId = (routerProps.match.params.id)
-                            favEventObj = listOfSavedEvents.find(event => event.ticketmasterid === eventId)
-                        }
+                        // if (listOfSavedEvents) {
+                        //     eventId = (routerProps.match.params.id)
+                        //     favEventObj = listOfSavedEvents.find(event => event.ticketmasterid === eventId)
+                        // }
 
                         //    console.log("ticketmasterid",eventId)
                         //    console.log("foundEventObj",foundEventObj)
@@ -86,13 +100,9 @@ class EventList extends React.Component {
 
 
                         let event
-                        if (foundEventObj) {
+                        if (mergeEventObj) {
                             // let attractions = foundEventObj["_embedded"].attractions.map(artist => artist.name)
-                            event = <EventDetails key={foundEventObj.id} eventObj={foundEventObj} />
-
-                        }
-                        else if (favEventObj) {
-                            event = <EventDetails key={favEventObj.id} eventObj={favEventObj} />
+                            event = <EventDetails key={mergeEventObj.id} eventObj={mergeEventObj} />
                         }
                         else {
                             event = <h2>Loading...</h2>
