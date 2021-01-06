@@ -9,6 +9,7 @@ import Navbar from './Components/Navbar'
 import React from 'react'
 // import {initialFetch}  from './Redux/actions';
 import './Style/eventlist.scss'
+import './Style/navbar.scss'
 
 class App extends React.Component {
 
@@ -32,14 +33,14 @@ class App extends React.Component {
   render() {
 
     return (
-      <>
-        <nav>
+      <body>
+        <nav class="side-nav" >
           <Navbar />
         </nav>
         <div class="mainbody">
           <Header />
         </div>
-      </>
+      </body>
     );
   }
 }

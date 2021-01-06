@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import '../Style/eventcard.scss'
 
 
 class EventCard extends React.Component {
@@ -15,7 +16,7 @@ class EventCard extends React.Component {
 
     render() {
         return (
-            <div>
+            <div class="event-card">
                 <NavLink to={`/get_events/${this.props.eventObj.ticketmasterid}`}  >
                     <h1 >{this.props.eventObj.title}</h1>
                     <img src={this.props.eventObj.image} style={{ maxWidth: "200px", maxHeight: "115px" }} />

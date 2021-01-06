@@ -15,7 +15,7 @@ class Navbar extends React.Component {
         console.log(this.props)
         return (
            
-            <div class="side-nav" >
+            <div>
                 <NavLink to="/get_events">
                     <h5> Home Page </h5>
                 </NavLink>

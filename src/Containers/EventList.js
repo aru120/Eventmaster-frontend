@@ -35,7 +35,7 @@ class EventList extends React.Component {
 
         if (this.props.initialEvents) {
 
-            return this.props.initialEvents.map(event => <EventCard key={event.id} eventObj={event} />)
+            return this.props.initialEvents.map(event => <li class="card_list-item"><EventCard key={event.id} eventObj={event} /></li>)
         }
         else {
             return <h2>No Events Nearby</h2>
@@ -112,10 +112,12 @@ class EventList extends React.Component {
                         return (
                             <> 
                                 {!(this.props.initialEvents) ? <h1>Loading...</h1> :
-                                    <>
-                                        <h1> Hello </h1>
+                                    <section >
+                                        <h1> Nearby Events </h1>
+                                        <ul class="card_list">
                                         {this.renderHomePageEvents()}
-                                    </>
+                                        </ul>
+                                    </section>
                                 }
                             </>
                         )

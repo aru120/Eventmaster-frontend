@@ -1,7 +1,41 @@
 .mainbody {
     
     background: grey;
-    position: absolute;
+    position: relative;
     
     padding: 4rem;
+    margin: 1em;
+  overflow: auto;
+  min-width: 15.25em;
   }
+
+  .card_container {
+    background-color: rgba(0, 0, 0, 0.3);
+    margin: 1em;
+    overflow: auto;
+    min-width: 15.25em;
+    }
+
+    .card_list {
+        display: flex;
+        max-width: 60em;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        margin: 0 1em;
+      }
+
+      .card_list-item {
+        list-style: none;
+        vertical-align: top;
+        margin: 2em 0.5em 0 0.5em;
+        &:last-child {
+          margin-bottom: 2em;
+        }
+        min-width: 13.25em;
+        width: 32%;
+      }
+    
+      ul, li {
+        margin: 0;
+        padding: 0;
+      }

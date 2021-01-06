@@ -13,7 +13,7 @@ function Header() {
 
 
     return (
-        <div>
+        <>
             <Switch>
                 <>
                     <Route path="/get_events" component={EventList} />
@@ -25,7 +25,7 @@ function Header() {
                 </>
             </Switch>
 
-        </div>
+        </>
     )
 }
 
