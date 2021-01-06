@@ -115,7 +115,7 @@ class EventList extends React.Component {
 
                     <Route exact path="/get_events" render={() => {
                         return (
-                            <>
+                            <> 
                                 {!(this.props.initialEvents) ? <h1>Loading...</h1> :
                                     <>
                                         <h1> Hello </h1>

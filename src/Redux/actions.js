@@ -51,7 +51,8 @@ function convertTicketMaster(array) {
             image: eventObj.images[0].url,
             artists: artistName,
             date: eventObj.dates.start["localDate"],
-            time: eventObj.dates.start["localTime"]
+            time: eventObj.dates.start["localTime"],
+            url: eventObj.url
         }
         newArr.push(obj)
     })

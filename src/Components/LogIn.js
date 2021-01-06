@@ -19,11 +19,9 @@ class LogIn extends React.Component{
     logInHandler =(e) => {
         e.preventDefault()
 
-        this.props.user(this.state)
-        
-       
-
-        history.push("/get_events")
+        let user = async () => { return this.props.user(this.state)}
+        user().then(this.props.history.push("/get_events")
+        )
 
     }
 
@@ -53,6 +51,6 @@ function mdp(dispatch){
 }
 
 
-export default connect(null,mdp)(LogIn)
+export default withRouter(connect(null,mdp)(LogIn))
 
 
