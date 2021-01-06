@@ -5,13 +5,13 @@ import { initialFetch } from '../Redux/actions';
 import { Route, Switch } from 'react-router-dom'
 import EventDetails from '../Components/EventDetails';
 import { addFavorite } from '../Redux/actions'
-
+import '../Style/eventlist.scss'
 
 class EventList extends React.Component {
 
     componentDidMount() {
         // const data = localStorage.getItem("savedEvents")
-
+        
         if (this.props.user_state) {
             this.props.initialFetch(this.props.user_state.user.zipcode)
             // this.props.addToFavs(data)
@@ -57,8 +57,9 @@ class EventList extends React.Component {
 
     render() {
         // console.log("IN EVENT LIST",this.props.user_state.user.zipcode)
+        console.log("Event State", this.props.initialEvents)
         return (
-            <>
+            <div>
                 <Switch>
                     <Route path="/get_events/:id" render={(routerProps) => {
                         console.log("Router Props:", routerProps)
@@ -102,15 +103,9 @@ class EventList extends React.Component {
                         let event
                         if (mergeEventObj) {
                             // let attractions = foundEventObj["_embedded"].attractions.map(artist => artist.name)
-                            event = <EventDetails key={mergeEventObj.id} eventObj={mergeEventObj} />
+                          return  event = <EventDetails key={mergeEventObj.id} eventObj={mergeEventObj} />
                         }
-                        else {
-                            event = <h2>Loading...</h2>
-                        }
-
-
-
-                        return event
+                
                     }} />
 
                     <Route exact path="/get_events" render={() => {
@@ -127,7 +122,7 @@ class EventList extends React.Component {
                     }} />
 
                 </Switch>
-            </>
+            </div>
         )
     }
 }

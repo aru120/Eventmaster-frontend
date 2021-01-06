@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import React from 'react'
 import SearchBar from './SearchBar'
+import '../Style/navbar.scss'
 
 class Navbar extends React.Component {
 
@@ -14,7 +15,7 @@ class Navbar extends React.Component {
         console.log(this.props)
         return (
            
-            <>
+            <div class="side-nav" >
                 <NavLink to="/get_events">
                     <h5> Home Page </h5>
                 </NavLink>
@@ -43,7 +44,7 @@ class Navbar extends React.Component {
             
             
                
-            </>
+            </div>
         )
     }
 

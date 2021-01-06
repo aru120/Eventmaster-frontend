@@ -3,6 +3,7 @@ import history from '../History/history'
 import { withRouter } from 'react-router-dom'
 
 
+
 export function initialFetch(zipcode) {
     const api = process.env.REACT_APP_API_KEY
     let URL = ""
@@ -60,7 +61,8 @@ function convertTicketMaster(array) {
 }
 
 
-export function setUser(userObj) {
+export function setUser(userObj, history) {
+    console.log("INSIDE SET USER USEROBJ", userObj)
     return function (dispatch) {
         fetch('http://localhost:3000/api/login', {
             method: "POST",
@@ -76,6 +78,7 @@ export function setUser(userObj) {
                 localStorage.setItem("token", data.jwt)
                 localStorage.setItem("user_id", data.user.id)
                 dispatch({ type: actionTypes.setUser, payload: data })
+                history.push("/get_events")
 
                 return fetch(`http://localhost:3000/api/users/${data.user.id}`)
                     .then(r => r.json())
@@ -84,9 +87,8 @@ export function setUser(userObj) {
                         dispatch({ type: actionTypes.makeFavorites, payload: userData.events})
                         // localStorage.setItem("savedEvents", userData.events)
                     })
-
+                    
             })
-
 
 
     }

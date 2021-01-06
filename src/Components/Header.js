@@ -4,6 +4,8 @@ import EventList from '../Containers/EventList'
 import SignUp from './SignUp'
 import LogIn from './LogIn'
 import SavedEvents from '../Components/SavedEvents'
+import '../Style/eventlist.scss'
+
 
 // import Navbar from 'react-router-dom'
 

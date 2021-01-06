@@ -18,10 +18,11 @@ class LogIn extends React.Component{
 
     logInHandler =(e) => {
         e.preventDefault()
-
-        let user = async () => { return this.props.user(this.state)}
-        user().then(this.props.history.push("/get_events")
-        )
+        console.log("INSIDE LOGIN HISTORY", this.props.history)
+        this.props.user(this.state, this.props.history)
+        // let user = async () => { return this.props.user(this.state)}
+        // user().then(this.props.history.push("/get_events")
+        // )
 
     }
 
@@ -44,7 +45,7 @@ class LogIn extends React.Component{
 function mdp(dispatch){
     return(
         {
-        user: (userObj) => dispatch(setUser(userObj)),
+        user: (userObj, history) => dispatch(setUser(userObj, history)),
         addToFavs: (eventObj) => dispatch(addFavorite(eventObj))
     }
     )

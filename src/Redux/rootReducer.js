@@ -25,6 +25,8 @@ function setUser(state = defaultState.user_state, action) {
     console.log("IN SET USER", action)
     switch (action.type) {
         case "SET_USER":
+            console.log("INSIDE SET USER", state)
+            console.log("INSIDE SET USER ACITON:", action.payload)
             return action.payload;
             break;
         case "UPDATE_USER":

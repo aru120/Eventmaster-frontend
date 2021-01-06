@@ -1,41 +1,45 @@
 import logo from './logo.svg';
-import './App.css';
-import {connect} from 'react-redux'
-import {updateUser} from './Redux/actions'
+import './App.scss';
+import { connect } from 'react-redux'
+import { updateUser } from './Redux/actions'
 
 // import EventList from './Containers/EventList'
 import Header from './Components/Header'
 import Navbar from './Components/Navbar'
 import React from 'react'
 // import {initialFetch}  from './Redux/actions';
+import './Style/eventlist.scss'
 
 class App extends React.Component {
 
-  componentDidMount(){
-      const token = localStorage.getItem("token")
-      if(token){
-        fetch('http://localhost:3000/api/profile',{
-          method: "GET",
-          headers: { Authorization: `Bearer ${token}`},
-        })
+  componentDidMount() {
+    const token = localStorage.getItem("token")
+    if (token) {
+      fetch('http://localhost:3000/api/profile', {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+      })
         .then(r => r.json())
         .then(data => {
           this.props.user(data)
         }
-          
-          )
-      }
+
+        )
+    }
   }
 
 
-  render(){
+  render() {
 
     return (
-      <div>
-        <Navbar />
-        <Header />
-        
-      </div>
+      <>
+        <nav>
+          <Navbar />
+        </nav>
+        <div class="mainbody">
+          <Header />
+        </div>
+      </>
     );
   }
 }
@@ -48,4 +52,4 @@ function mdp(dispatch) {
   )
 }
 
-export default connect(null,mdp)(App);
+export default connect(null, mdp)(App);

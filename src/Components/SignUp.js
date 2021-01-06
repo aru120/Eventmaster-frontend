@@ -1,4 +1,8 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import history from '../History/history'
+import {withRouter} from 'react-router'
+import {setUser} from '../Redux/actions'
 
 class SignUp extends React.Component {
 
@@ -16,6 +20,7 @@ class SignUp extends React.Component {
     submitHandler = (e) => {
         e.preventDefault()
 
+
         fetch("http://localhost:3000/api/users", {
             method: "POST",
             headers: {
@@ -25,7 +30,15 @@ class SignUp extends React.Component {
             body: JSON.stringify({user: this.state})
         })
             .then(response => response.json())
-            .then(console.log)
+            .then(data => {
+                
+                let loginState = {
+                    username: this.state.username,
+                    password: this.state.password
+                }
+                console.log("login state", data)
+                this.props.user(loginState, this.props.history)
+            })
             .catch(console.log)
     }
 
@@ -42,4 +55,12 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp
+function mdp(dispatch){
+    return(
+        {
+        user: (userObj, history) => dispatch(setUser(userObj, history)),
+    }
+    )
+}
+
+export default withRouter(connect(null,mdp)(SignUp))
