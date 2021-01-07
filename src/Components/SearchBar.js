@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { initialFetch } from '../Redux/actions'
+import '../Style/searchbar.scss'
 
 class SearchBar extends React.Component {
 
@@ -23,8 +24,8 @@ class SearchBar extends React.Component {
         return (
             <div>
                 <form onSubmit={this.searchHandler}>
-                    <input type="number" name="searchZipcode" placeholder="search" value={this.state.searchZipcode} onChange={this.changeHandler} />
-                    <button> Search</button>
+                    <input className="mySearch" type="number" name="searchZipcode" placeholder="search" value={this.state.searchZipcode} onChange={this.changeHandler} />
+                    <button className="searchBtn"> <i className="fa fa-search"></i></button>
                 </form>
             </div>
         )

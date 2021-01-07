@@ -1,17 +1,12 @@
 .mainbody {
-    
-    background: grey;
-    position: relative;
-    
-    padding: 4rem;
-    margin: 1em;
-  overflow: auto;
-  min-width: 15.25em;
+    margin-left: 15rem; 
+    padding: 0px 10px;
+  
   }
 
   .card_container {
     background-color: rgba(0, 0, 0, 0.3);
-    margin: 1em;
+    margin: 0;
     overflow: auto;
     min-width: 15.25em;
     }
@@ -32,10 +27,17 @@
           margin-bottom: 2em;
         }
         min-width: 13.25em;
-        width: 32%;
+        width: auto;
       }
     
-      ul, li {
-        margin: 0;
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        justify-content: center; 
         padding: 0;
+      }
+      
+      li {
+        margin: 1em;
       }

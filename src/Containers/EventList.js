@@ -10,7 +10,7 @@ import '../Style/eventlist.scss'
 class EventList extends React.Component {
 
     componentDidMount() {
-        // const data = localStorage.getItem("savedEvents")
+        // const data = localStorage.getItem("token")
         
         if (this.props.user_state) {
             this.props.initialFetch(this.props.user_state.user.zipcode)
@@ -33,9 +33,9 @@ class EventList extends React.Component {
     renderHomePageEvents = () => {
 
 
-        if (this.props.initialEvents) {
+        if (this.props.initialEvents.length > 0) {
 
-            return this.props.initialEvents.map(event => <li class="card_list-item"><EventCard key={event.id} eventObj={event} /></li>)
+            return this.props.initialEvents.map(event => <li className="card_list-item"><EventCard key={event.id} eventObj={event} /></li>)
         }
         else {
             return <h2>No Events Nearby</h2>
@@ -59,7 +59,7 @@ class EventList extends React.Component {
         // console.log("IN EVENT LIST",this.props.user_state.user.zipcode)
         console.log("Event State", this.props.initialEvents)
         return (
-            <div>
+            <div >
                 <Switch>
                     <Route path="/get_events/:id" render={(routerProps) => {
                         console.log("Router Props:", routerProps)
@@ -112,12 +112,12 @@ class EventList extends React.Component {
                         return (
                             <> 
                                 {!(this.props.initialEvents) ? <h1>Loading...</h1> :
-                                    <section >
+                                    <>
                                         <h1> Nearby Events </h1>
-                                        <ul class="card_list">
+                                        <ul className="card_list">
                                         {this.renderHomePageEvents()}
                                         </ul>
-                                    </section>
+                                    </>
                                 }
                             </>
                         )

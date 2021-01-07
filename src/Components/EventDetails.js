@@ -33,7 +33,7 @@ class EventDetails extends React.Component {
 
     saveEventHandler = () => {
         const eventObject = this.props.eventObj
-        console.log(eventObject)
+        console.log(eventObject.url)
 
 
         // let artistArray = eventObject["_embedded"].attractions.map(artist => artist.name)

@@ -1,98 +1,163 @@
-// map variable colors and font families
-$colors: (ocean-blue: #286172,
-          seafoam-blue: #1bbab5,
-          coal-black: #0b2025,
-          white: #fff);
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Poppins:800');
 
-$fonts: (base: #{Montserrat, arial, sans-serif},
-         cursive: #{Satisfy, cursive});
+// Colors
+$white: #fff;
+$emperor: #535353;
 
+$lavendar-magenta: #EC51DE;
+$shocking-pink: #EB0EC7;
+$governor-bay: #3023AE;
+$persian-blue: #3022AD;
+$curious-blue: #1897E1;
+$dodger-blue: #53A0FD;
+$red-violet: #CC19BF;
+$mariner: #405CD2;
+$seance: #7623A2;
 
-.event-card {
-  background-color: map-get($colors, white);
-  box-shadow: 0 0       .3125rem 0 rgba(0, 0, 0, 0.3), 
-              0 .125rem .1875rem 0 rgba(0, 0, 0, 0.3);
-  margin: 0;
-  padding: 0;
-  max-width: 28em;
+@mixin font($family, $weight, $size) {
+  font-family: $family, sans-serif;
+  font-weight: $weight;
+  font-size: $size;
 }
 
-.event-card__header {
-  padding: 0.05em 1.7em;
-  max-height: 100%;
-  &--seafoam-blue {
-    background-color: map-get($colors, seafoam-blue);
-  }
-}
-
-.event-card__title {
-  font-size: 1.5em;
-  text-transform: uppercase;
-  @media (min-width: 40em) {
-    font-size: 1.8em;
-  }
-}
-
-.event-card__sub-title {
-  font-size: 1.3em;
-  line-height: 1.5;
-  margin-top: -0.5em;
-  margin-bottom: 0.5em;
-  text-align: right;
-  @media (min-width: 40em) {
-    font-size: 1.5em;
-    line-height: 0;
-    margin-top: 0;
-    margin-bottom: 1.4em; 
-  }
-}
-
-.event-card__main-image { 
-  display: block;
-  margin: auto;
-  max-height: 100%;
-  max-width: 100%;
-  position: relative;
-}
-
-.event-card__caption {
-  color: map-get($colors, white);
-  font-size: 0.5em;
-  position: absolute;
-  bottom: 0.75rem;
-  right: 0.4rem;
-  @media (min-width: 40em){
-    font-size: 0.7em;
-    bottom: 0.9rem;
-    right: 0.6rem;  
-  }
-}
-
-.event-card__main-image img {
+.card {
+  padding: 13px;
+  max-width: 318px;
   width: 100%;
-}
+  background: linear-gradient(-120deg, $lavendar-magenta 0%, $dodger-blue 60%, $governor-bay 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &__filter { 
+    height: 212px; 
+    overflow: hidden;
+    position: relative;
+    object-fit: cover;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      mix-blend-mode: multiply;
+      background: linear-gradient(-150deg, $shocking-pink 0%, $curious-blue 100%);
+      z-index: 1;
+    }
+  }
+  &__photo { 
+    width: 100%;
+    // -webkit-filter: grayscale(100%);
+    // filter: grayscale(100%);
+  }
+  &__container { 
+    background: $white; 
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1em;
+    box-sizing: border-box;
+  }
+  h1 { 
+    @include font('Poppins', regular, 37px);
+    color: $mariner;
+    letter-spacing: -1.06px;
+    margin: 0 0.4em 0.4em 0;
+    &:hover {
+      -webkit-animation: gradient 1.3s ease infinite;
+      -moz-animation: gradient 1.3s ease infinite;
+      animation: gradient 1.3s ease infinite;
+    }
+  }
+  time, p, .card__location {
+    @include font('IBM Plex Mono', regular, 14px);
+    color: $emperor;
+    margin: 0.18em;
+  }
+  &__location {
+    text-decoration-color: $shocking-pink;
+    -webkit-text-decoration-color: $shocking-pink;
+    transition: all 250ms ease;
+    max-width: 13.3em;
+  }
+  &__buttons { 
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 1.5em 0 0.5em 0;
+    flex-direction: row;
+    .btn {
+      @include font('IBM Plex Mono', regular, 15px);
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-align: center;
+      display: block;
+      flex: 1 1 100%;
+      color: $white;
+      padding: 1em;
+      &:hover {
+        -webkit-animation: gradient 1.3s ease infinite;
+        -moz-animation: gradient 1.3s ease infinite;
+        animation: gradient 1.3s ease infinite;
+      }
 
-.event-card__details {
-  color: map-get($colors, coal-black);
-  font-size: 0.9em;
-  line-height: 1.75;
-  padding: 0.5em 1.7em 1.25em 1.7em;
-  @media (min-width: 40em){
-    font-size:  1em;
-    line-height: 1.25; 
-    padding: 0.75em 1.7em 1.25em 1.7em;
+      &:hover i{
+        -webkit-animation: levitate 1.3s ease infinite;
+        -moz-animation: levitate 1.3s ease infinite;
+        animation: levitate 1.3s ease infinite;
+      }
+    }
+    .primary {
+      position: relative;
+      background-image: linear-gradient(to right, $curious-blue, $persian-blue);
+      background-size: 150% 150%;
+      transition: all 0.4s ease;
+      z-index: 1;
+    }
+    .secondary {
+      position: relative;
+      background-image: linear-gradient(to right, $red-violet, $seance);
+      background-size: 150% 150%;
+      transition: all 0.4s ease;
+      z-index: 1;
+    }
   }
 }
 
-.event-card__details > p {
-  margin: 0;
-  @media (min-width: 40em){
-    margin-bottom: .5em;
-  }
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
-.event-card__fancy-font {
-  color: map-get($colors, white);
-  font-size: 1.1em;
-  font-family: map-get($fonts, cursive);
+@keyframes levitate {
+	0% {
+		padding-left: 0px; 
+	}
+	50% {
+		padding-left: 5px; 
+	}
+	100% {
+		padding-left: 0px;
+	}
+}
+
+@media (max-width: 400px) {
+  .fas {
+    display: none;
+  }
+  
+  .card__buttons {
+    display: inline;
+  }
 }

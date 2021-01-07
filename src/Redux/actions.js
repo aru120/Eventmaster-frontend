@@ -19,7 +19,7 @@ export function initialFetch(zipcode) {
         fetch(URL)
             .then(response => response.json())
             .then(eventsData => {
-                console.log("eventsData", eventsData["_embedded"].events)
+                // console.log("eventsData", eventsData["_embedded"].events)
                 if (eventsData["_embedded"]) {
 
                     const convertedData = convertTicketMaster(eventsData["_embedded"].events)
@@ -98,11 +98,13 @@ export function updateUser(userObj) {
     console.log("UPDATE USER:", userObj)
     return function (dispatch) {
         dispatch({ type: actionTypes.updateUser, payload: userObj })
+  
         return fetch(`http://localhost:3000/api/users/${userObj.user.id}`)
                     .then(r => r.json())
                     .then(userData => {
                         console.log("Inside Update User - UserDataEvents:", userData.events)
                         dispatch({ type: actionTypes.makeFavorites, payload: userData.events})
+                        
                         // localStorage.setItem("savedEvents", userData.events)
                     })
     }

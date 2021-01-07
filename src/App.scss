@@ -37,12 +37,143 @@
   }
 }
 
-body {
-  display: flex;
-  background: lime;
-   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-font-size: 1rem;
-font-weight: 400;
-line-height: 1.5;
-text-align: left;
+.side-nav {
+  width: 16rem;
+  overflow: auto;
+  box-shadow: 6px 9px 112px -16px rgba(0,0,0,0.6);;
+  height: 100vh;
+  list-style: none;
+  padding-bottom:2rem;
+  background-color: #932EF9;
+  cursor:pointer;
+  font-weight:300;
 }
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300);
+
+
+.menu-fixed{
+  font-weight:300;
+  list-style: none;
+  width: 15rem;
+  height: 100%;
+  background: #e151e6;
+  position: fixed;
+  float: left;
+  transition: all 0.3s;
+  box-shadow: 10px 0px 10px rgba(0,0,0,0.19), 8px 0px 10px rgba(0,0,0,0.23);
+  text-align: center;
+  overflow: auto;
+  
+  .material-icons.back{
+    display: none;
+    color: white;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 36px;
+    cursor: pointer;
+    transition: color 0.3s;
+    &:hover{
+      color:  #009688;
+      transition: color 0.3s;
+    }
+  }
+  
+  &:target{
+    width: 280px;
+    background: #000;
+    transition: all 0.3s ease-out;
+    & > .notes{
+      transition: all 0.2s;
+      z-index: 0;
+      opacity: 0;
+    }
+    & > a .material-icons.back{
+      display: block;
+    }
+    & > a{
+      & > .logo{
+        width: 60%;
+        height: 47px;
+        margin: auto;
+        & > span{
+          display: none;
+        }
+        & > p{
+          display: block;
+        }
+      }
+    }
+    & > .menu li{
+        text-align: left;
+        width: 60%;
+      &:hover{
+        &::after{
+          content:'';
+          display: block;
+          position: absolute;
+          background: rgba(38, 166, 154, 0.1);
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          border-radius: 4px;
+        }
+        & > p{
+          color: white;
+        }
+      }
+      & > p{
+        display: inline-block;        
+      }
+    }
+  }
+  .logo{
+    width: 100%;
+    height: 70px;
+    position: relative;
+  }
+    
+  .pmenu{
+    margin: 0;
+    text-align: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 14px;
+    font-weight: 300;
+  }
+  .menu{
+    list-style: none;
+    display: block;
+    width: 100%;
+    li{
+      display: block;
+      padding: 20px;
+      width: 100%;
+      margin: auto;
+      
+      border-bottom: 3px solid rgb(0, 0, 0);
+      
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s;
+      &:hover{
+        background: #000;
+        transition: all 0.3s;
+        &>.material-icons{
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+
+a:link, a:visited{
+  text-decoration: none;
+}
+
+
+
+
