@@ -37,7 +37,7 @@ export function initialFetch(zipcode) {
 function convertTicketMaster(array) {
     let newArr = []
     array.forEach(eventObj => {
-        // console.log("CONVERTER", eventObj["_embedded"].venues[0].name)
+        console.log("CONVERTER", eventObj["_embedded"].venues[0].address["line1"])
         let artistName
         if (eventObj["_embedded"].attractions) {
             artistName = eventObj["_embedded"].attractions.map(artist => artist.name)
@@ -56,7 +56,11 @@ function convertTicketMaster(array) {
             date: eventObj.dates.start["localDate"],
             time: eventObj.dates.start["localTime"],
             url: thisImage,
-            venue: eventObj["_embedded"].venues[0].name
+            venue: eventObj["_embedded"].venues[0].name,
+            address: eventObj["_embedded"].venues[0].address["line1"],
+            city: eventObj["_embedded"].venues[0].city.name,
+            state: eventObj["_embedded"].venues[0].state.name,
+            zipcode: eventObj["_embedded"].venues[0].postalCode
         }
         newArr.push(obj)
     })
@@ -107,6 +111,7 @@ export function setUser(userObj, history) {
                     })
                     
             })
+            .catch(console.log)
 
 
     }

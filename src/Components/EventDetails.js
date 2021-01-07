@@ -46,7 +46,12 @@ class EventDetails extends React.Component {
             ticketmasterid: eventObject.ticketmasterid,
             time: eventObject.time,
             artists: eventObject.artists,
-            url: eventObject.url
+            url: eventObject.url,
+            venue: eventObject.venue,
+            address: eventObject.address,
+            city: eventObject.city,
+            state: eventObject.state,
+            zipcode: eventObject.zipcode
 
         }
 
@@ -127,24 +132,45 @@ class EventDetails extends React.Component {
         console.log("localStorage", localStorage.getItem("savedEvents"))
         return (
             <div className="event-details">
-                <>
-                    <h1>{this.props.eventObj.title}</h1>
-                    <img className="event-details-img" src={this.props.eventObj.image}/>
-                    <h5>Date: {this.dateHandler(this.props.eventObj.date)}</h5>
-                    <h5>Time: {this.timeHandler(this.props.eventObj.time)}</h5>
+                <div className="event-container">
+                    <h1 className="title">{this.props.eventObj.title}</h1>
+                  
+
+                 
+                  <div class="row">
+                    
+                    <div class="column1">
+                        <img className="event-details-img" src={this.props.eventObj.image}/>
+                    </div>
+                    
+                    <div class="column2">
+                        <h5 className="date">Date: {this.dateHandler(this.props.eventObj.date)}</h5>
+                        <h5 className="date">Time: {this.timeHandler(this.props.eventObj.time)}</h5>
+                    </div>
+                 </div>
+
+                  <div class="row">
+                      
+                    <div class="column">              
                     <h5>Venue: {this.props.eventObj.venue} </h5>
-                    <br/>
+                    <h5>{this.props.eventObj.address}</h5>
+                    <h5>{this.props.eventObj.city},{this.props.eventObj.state}</h5>
+                    <h5>{this.props.eventObj.zipcode}</h5>
+                    </div>
+                   
+                    <div class="column">
                     { this.props.eventObj.artists.length === 0 ? null : <h3>Lineup {this.props.eventObj.artists.map(artist => <p> {artist} </p>)}</h3>}
+                    </div>
+                </div>
 
-
-                    <button onClick={this.clickHandler} >Buy Tickets</button>
-                    { this.filterSaveButton() ? <button onClick={this.saveEventHandler}>Save This Event</button> : null }
+                    <button className="button" onClick={this.clickHandler} >Buy Tickets</button>
+                    { this.filterSaveButton() ? <button className="button" onClick={this.saveEventHandler}>Save This Event</button> : null }
                     
                     {this.findSavedEvent() ?
                         
-                        <button onClick={this.deleteSavedEventHandler}> Remove Saved Event</button> : null
+                        <button  className="button" onClick={this.deleteSavedEventHandler}> Remove Saved Event</button> : null
                     }
-                </>
+                </div>
 
 
             </div>

@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import EventCard from './EventCard'
+import '../Style/eventlist.scss'
+
 
 
 
@@ -22,7 +24,7 @@ class SavedEvents extends React.Component {
 
     renderSavedEvents = () => {
         console.log(this.props.savedEvents)
-        return this.props.savedEvents.map(event =>  <EventCard eventObj={event} key={event.id} />)
+        return this.props.savedEvents.map(event =>  <li className="card_list-item"><EventCard eventObj={event} key={event.id} /></li>)
     }
 
 
@@ -33,9 +35,9 @@ class SavedEvents extends React.Component {
             <>
                 <h1>Saved Events </h1>
                 {this.props.savedEvents.length === 0 ? null :
-                    <>
+                    <ul className="card_list">
                         {this.renderSavedEvents()}
-                    </>
+                    </ul>
                 }
             </>
         )
