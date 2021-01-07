@@ -1,22 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {setUser} from '../Redux/actions'
+import { setUser } from '../Redux/actions'
 import { Redirect } from 'react-router-dom'
 import history from '../History/history'
 import { withRouter } from 'react-router'
-import {addFavorite} from '../Redux/actions'
+import { addFavorite } from '../Redux/actions'
+import '../Style/login.scss'
 
-class LogIn extends React.Component{
+class LogIn extends React.Component {
 
-    state ={
+    state = {
         username: "",
         password: ""
 
     }
 
-  
 
-    logInHandler =(e) => {
+
+    logInHandler = (e) => {
         e.preventDefault()
         console.log("INSIDE LOGIN HISTORY", this.props.history)
         this.props.user(this.state, this.props.history)
@@ -27,31 +28,50 @@ class LogIn extends React.Component{
     }
 
     changeHandler = (e) => {
-      
+
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    render(){
-        return(
-            <form onSubmit={this.logInHandler}>
-            <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.changeHandler} />
-            <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.changeHandler} />
-            <button>Log In</button>
-            </form>
+    render() {
+        return (
+            <div className="form">
+                <div className="form-panel">
+                <div className="form-header">
+                    <h1> LOG IN</h1>
+                </div>
+                <div className="form-content">
+                <form onSubmit={this.logInHandler} >
+                    <div className="form-group">
+                        
+                      <label>Username </label> 
+                      <input type="text" name="username"  value={this.state.username} onChange={this.changeHandler} required />
+                    </div>
+                    <div className="form-group">
+                    <label>Password </label> 
+                        <input type="password" name="password"  value={this.state.password} onChange={this.changeHandler} required />
+                    </div>
+                    <div className="form-group">
+                        <button>Log In</button>
+
+                    </div>
+                </form>
+                </div>
+                </div>
+            </div>
         )
     }
 }
 
-function mdp(dispatch){
-    return(
+function mdp(dispatch) {
+    return (
         {
-        user: (userObj, history) => dispatch(setUser(userObj, history)),
-        addToFavs: (eventObj) => dispatch(addFavorite(eventObj))
-    }
+            user: (userObj, history) => dispatch(setUser(userObj, history)),
+            addToFavs: (eventObj) => dispatch(addFavorite(eventObj))
+        }
     )
 }
 
 
-export default withRouter(connect(null,mdp)(LogIn))
+export default withRouter(connect(null, mdp)(LogIn))
 
 

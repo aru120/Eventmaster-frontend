@@ -19,7 +19,7 @@ export function initialFetch(zipcode) {
         fetch(URL)
             .then(response => response.json())
             .then(eventsData => {
-                // console.log("eventsData", eventsData["_embedded"].events)
+                console.log("eventsData", eventsData["_embedded"])
                 if (eventsData["_embedded"]) {
 
                     const convertedData = convertTicketMaster(eventsData["_embedded"].events)
@@ -37,7 +37,7 @@ export function initialFetch(zipcode) {
 function convertTicketMaster(array) {
     let newArr = []
     array.forEach(eventObj => {
-        // console.log("CONVERTER", eventObj)
+        // console.log("CONVERTER", eventObj["_embedded"].venues[0].name)
         let artistName
         if (eventObj["_embedded"].attractions) {
             artistName = eventObj["_embedded"].attractions.map(artist => artist.name)
@@ -46,18 +46,36 @@ function convertTicketMaster(array) {
             artistName = []
         }
 
+        let thisImage = findBiggestImage(eventObj.images)
+
         let obj = {
             ticketmasterid: eventObj.id,
             title: eventObj.name,
-            image: eventObj.images[0].url,
+            image: eventObj.images[2].url,
             artists: artistName,
             date: eventObj.dates.start["localDate"],
             time: eventObj.dates.start["localTime"],
-            url: eventObj.url
+            url: thisImage,
+            venue: eventObj["_embedded"].venues[0].name
         }
         newArr.push(obj)
     })
     return newArr
+}
+
+function findBiggestImage(array){
+    let width = 0
+    let url = ""
+
+    array.forEach(eventObj =>{
+       
+        if(parseInt(eventObj.width) > width){
+            width = eventObj.width;
+            url = eventObj.url;
+        }
+    })
+    
+    return url
 }
 
 

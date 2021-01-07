@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addFavorite } from '../Redux/actions'
 import { deleteFavorite } from '../Redux/actions'
-
+import '../Style/eventdetails.scss'
 
 class EventDetails extends React.Component {
 
@@ -126,14 +126,15 @@ class EventDetails extends React.Component {
     render() {
         console.log("localStorage", localStorage.getItem("savedEvents"))
         return (
-            <div>
+            <div className="event-details">
                 <>
                     <h1>{this.props.eventObj.title}</h1>
-                    <img src={this.props.eventObj.image} style={{ maxWidth: "200px", maxHeight: "115px" }} />
-                    <h5>{this.dateHandler(this.props.eventObj.date)}</h5>
-                    <h5>{this.timeHandler(this.props.eventObj.time)}</h5>
-
-                    { this.props.eventObj.artists.length === 0 ? null : <h3>{this.props.eventObj.artists.map(artist => <p> {artist} </p>)}</h3>}
+                    <img className="event-details-img" src={this.props.eventObj.image}/>
+                    <h5>Date: {this.dateHandler(this.props.eventObj.date)}</h5>
+                    <h5>Time: {this.timeHandler(this.props.eventObj.time)}</h5>
+                    <h5>Venue: {this.props.eventObj.venue} </h5>
+                    <br/>
+                    { this.props.eventObj.artists.length === 0 ? null : <h3>Lineup {this.props.eventObj.artists.map(artist => <p> {artist} </p>)}</h3>}
 
 
                     <button onClick={this.clickHandler} >Buy Tickets</button>
