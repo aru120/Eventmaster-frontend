@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;800&display=swap");
+
 // Font Family
-$body-font: "Roboto";
+
+$body-font: "poppins";
 
 // Font Weights
 $thin: 100;
@@ -30,6 +33,7 @@ $max-height: 400px;
 $gutters: 24px;
 
 .form {
+  font-family: ('poppins');
     z-index: 15;
     position: absolute;
     background:white;

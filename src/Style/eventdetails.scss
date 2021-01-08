@@ -34,6 +34,8 @@ $seance: #7623A2;
 }
 
 .button{
+    margin-top: 20px;
+    margin-bottom: 10px;
     outline: none;
     background: $accent;
     // width: 20%;
@@ -73,6 +75,8 @@ $seance: #7623A2;
     color:white;
     text-align: center;
     font-size: 40px;
+    font-family: ('poppins');
+    font-weight: 300;
 }
 
 .wrapper{
@@ -94,7 +98,7 @@ $seance: #7623A2;
   
   padding-left: 20px;
   padding-right: 20px;
-  margin-right: 700px;  
+  margin-right: 775px;  
 }
 
 

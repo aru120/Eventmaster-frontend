@@ -32,7 +32,7 @@ class Navbar extends React.Component {
                     <h1> CONCERT.io </h1>
                 </div>
                 {this.props.user_state ? (<p className="pmenu"> {this.props.user_state.user.name}</p>) : <p className="pmenu"> Welcome </p>}
-
+                <br/>
                 <SearchBar />
 
                 <ul className="menu">
@@ -47,7 +47,7 @@ class Navbar extends React.Component {
                                 <li><h4> Saved Events </h4></li>
                             </NavLink>
 
-                            <li onClick={this.logoutHandler}> Log Out </li>
+                            <li onClick={this.logoutHandler}> <h4>Log Out</h4></li>
 
                         </>
                         :

@@ -114,17 +114,17 @@ class EventDetails extends React.Component {
         return flag
     }
 
-    filterSaveButton = () =>{
+    filterSaveButton = () => {
         let flag = true
-        if(localStorage.getItem("token") && this.findSavedEvent()){
-             flag = false
-        }else if (localStorage.getItem("token")){
-             flag = true
-        }
-        else{
+        if (localStorage.getItem("token") && this.findSavedEvent()) {
             flag = false
-        }    
-        return flag 
+        } else if (localStorage.getItem("token")) {
+            flag = true
+        }
+        else {
+            flag = false
+        }
+        return flag
 
     }
 
@@ -133,47 +133,41 @@ class EventDetails extends React.Component {
         return (
             <div className="event-details">
                 <div className="event-container">
-                 
-                  
-                 <h1 className="title">{this.props.eventObj.title}</h1>
-
-                <div className="wrapper" >
-                    <img className="event-details-img" src={this.props.eventObj.image}/>
-                    <div className="imagecontainer">
-                        <div className="imagetext">
-                        <h5 className="date">Date: {this.dateHandler(this.props.eventObj.date)}</h5>
-                        <h5 className="date">Time: {this.timeHandler(this.props.eventObj.time)}</h5>
-                        <br/>
-                        <h5 className="date">Venue: {this.props.eventObj.venue} </h5>
-                         <h5 className="date" >{this.props.eventObj.address}</h5>
-                        <h5 className="date" >{this.props.eventObj.city}, {this.props.eventObj.state}</h5>
-                        <h5 className="date">{this.props.eventObj.zipcode}</h5>
+                    <h1 className="title">{this.props.eventObj.title}</h1>
+                    <div className="wrapper" >
+                        <img className="event-details-img" src={this.props.eventObj.image} />
+                        <div className="imagecontainer">
+                            <div className="imagetext">
+                                <h5 className="date">Date: {this.dateHandler(this.props.eventObj.date)}</h5>
+                                <h5 className="date">Time: {this.timeHandler(this.props.eventObj.time)}</h5>
+                                <br />
+                                <h5 className="date">Venue: {this.props.eventObj.venue} </h5>
+                                <h5 className="date" >{this.props.eventObj.address}</h5>
+                                <h5 className="date" >{this.props.eventObj.city}, {this.props.eventObj.state}</h5>
+                                <h5 className="date">{this.props.eventObj.zipcode}</h5>
+                            </div>
                         </div>
-                        </div>
-                </div>
-
-
-              
-                 </div>
-                  <div className="row">
-                      
-                   
-                    <div class="column">
-                    { this.props.eventObj.artists.length === 0 ? null : <h3 className="lineup">Lineup: {this.props.eventObj.artists.map(artist => <p className="lineup"> {artist} </p>)}</h3>}
                     </div>
                 </div>
 
-                    <button className="button" onClick={this.clickHandler} >Buy Tickets</button>
-                    { this.filterSaveButton() ? <button className="button" onClick={this.saveEventHandler}>Save This Event</button> : null }
-                    
-                    {this.findSavedEvent() ?
-                        
-                        <button  className="button" onClick={this.deleteSavedEventHandler}> Remove Saved Event</button> : null
-                    }
+                <br/>
+                <div>
+                    {this.props.eventObj.artists.length === 0 ? null : <h3 className="lineup">Lineup: {this.props.eventObj.artists.map(artist => <p className="lineup"> {artist} </p>)}</h3>}
                 </div>
 
 
-         
+
+                <button className="button" onClick={this.clickHandler} >Buy Tickets</button>
+                { this.filterSaveButton() ? <button className="button" onClick={this.saveEventHandler}>Save This Event</button> : null}
+
+                {this.findSavedEvent() ?
+
+                    <button className="button" onClick={this.deleteSavedEventHandler}> Remove Saved Event</button> : null
+                }
+            </div>
+
+
+
         )
     }
 }
