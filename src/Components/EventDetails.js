@@ -159,7 +159,7 @@ class EventDetails extends React.Component {
                       
                    
                     <div class="column">
-                    { this.props.eventObj.artists.length === 0 ? null : <h3 classname="lineup">Lineup {this.props.eventObj.artists.map(artist => <p className="lineup"> {artist} </p>)}</h3>}
+                    { this.props.eventObj.artists.length === 0 ? null : <h3 className="lineup">Lineup: {this.props.eventObj.artists.map(artist => <p className="lineup"> {artist} </p>)}</h3>}
                     </div>
                 </div>
 

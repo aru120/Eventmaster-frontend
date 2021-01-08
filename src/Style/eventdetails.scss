@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;800&display=swap");
 $accent: #932EF9;
 $white: #FFFFFF;
 $semibold: 500;
@@ -38,12 +38,12 @@ $seance: #7623A2;
     background: $accent;
     // width: 20%;
     border: 0;
-   
+    font-family: ('poppins');
+    font-weight: 500;
     padding: 5px 10px;
     color: $white;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: $semibold;
+    
+    
     line-height: inherit;
     text-transform: uppercase;
     cursor: pointer;
@@ -66,6 +66,7 @@ $seance: #7623A2;
 .lineup{
     font-family: ('poppins');
     font-weight: 300;
+    color: white;
 }
 
 .mainheader{
