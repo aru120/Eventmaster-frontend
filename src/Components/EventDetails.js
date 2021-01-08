@@ -133,33 +133,33 @@ class EventDetails extends React.Component {
         return (
             <div className="event-details">
                 <div className="event-container">
-                    <h1 className="title">{this.props.eventObj.title}</h1>
-                  
-
                  
-                  <div class="row">
-                    
-                    <div class="column1">
-                        <img className="event-details-img" src={this.props.eventObj.image}/>
-                    </div>
-                    
-                    <div class="column2">
+                  
+                 <h1 className="title">{this.props.eventObj.title}</h1>
+
+                <div className="wrapper" >
+                    <img className="event-details-img" src={this.props.eventObj.image}/>
+                    <div className="imagecontainer">
+                        <div className="imagetext">
                         <h5 className="date">Date: {this.dateHandler(this.props.eventObj.date)}</h5>
                         <h5 className="date">Time: {this.timeHandler(this.props.eventObj.time)}</h5>
-                    </div>
-                 </div>
+                        <br/>
+                        <h5 className="date">Venue: {this.props.eventObj.venue} </h5>
+                         <h5 className="date" >{this.props.eventObj.address}</h5>
+                        <h5 className="date" >{this.props.eventObj.city}, {this.props.eventObj.state}</h5>
+                        <h5 className="date">{this.props.eventObj.zipcode}</h5>
+                        </div>
+                        </div>
+                </div>
 
-                  <div class="row">
+
+              
+                 </div>
+                  <div className="row">
                       
-                    <div class="column">              
-                    <h5>Venue: {this.props.eventObj.venue} </h5>
-                    <h5>{this.props.eventObj.address}</h5>
-                    <h5>{this.props.eventObj.city},{this.props.eventObj.state}</h5>
-                    <h5>{this.props.eventObj.zipcode}</h5>
-                    </div>
                    
                     <div class="column">
-                    { this.props.eventObj.artists.length === 0 ? null : <h3>Lineup {this.props.eventObj.artists.map(artist => <p> {artist} </p>)}</h3>}
+                    { this.props.eventObj.artists.length === 0 ? null : <h3 classname="lineup">Lineup {this.props.eventObj.artists.map(artist => <p className="lineup"> {artist} </p>)}</h3>}
                     </div>
                 </div>
 
@@ -173,7 +173,7 @@ class EventDetails extends React.Component {
                 </div>
 
 
-            </div>
+         
         )
     }
 }

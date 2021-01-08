@@ -33,7 +33,7 @@ class SavedEvents extends React.Component {
         console.log(this.props.savedEvents)
         return (
             <>
-                <h1>Saved Events </h1>
+                <h1 className="mainheader">Saved Events </h1>
                 {this.props.savedEvents.length === 0 ? null :
                     <ul className="card_list">
                         {this.renderSavedEvents()}

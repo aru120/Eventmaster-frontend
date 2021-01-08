@@ -51,11 +51,11 @@ function convertTicketMaster(array) {
         let obj = {
             ticketmasterid: eventObj.id,
             title: eventObj.name,
-            image: eventObj.images[2].url,
+            image: thisImage,
             artists: artistName,
             date: eventObj.dates.start["localDate"],
             time: eventObj.dates.start["localTime"],
-            url: thisImage,
+            url: eventObj.url,
             venue: eventObj["_embedded"].venues[0].name,
             address: eventObj["_embedded"].venues[0].address["line1"],
             city: eventObj["_embedded"].venues[0].city.name,

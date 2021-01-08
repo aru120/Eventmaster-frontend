@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;800&display=swap");
 $accent: #932EF9;
 $white: #FFFFFF;
 $semibold: 500;
@@ -14,12 +15,7 @@ $mariner: #405CD2;
 $seance: #7623A2;
 
 
-.event-details{
-    // margin: 0 auto 10px;
-    // max-width: 80%;
-    height: 100%;
-    // background: linear-gradient(-120deg, $lavendar-magenta 0%, $dodger-blue 60%, $governor-bay 100%);
-}
+
 // style={{ maxWidth: "200px", maxHeight: "115px" }} 
 
 .event-details-img{
@@ -29,9 +25,12 @@ $seance: #7623A2;
 
 
 .date{
+    font-family:('poppins');
+    font-weight: 300;
     color: white;
-    font-size: 18px;
+    font-size: 15px;
     margin-bottom: 5px;
+    
 }
 
 .button{
@@ -51,14 +50,57 @@ $seance: #7623A2;
     margin-right: 10px;
 }
 
-.event-container{
-    margin: auto 0;
-    // background-color: white;
-    max-width: 1500px;
+.button:hover{
+    background: black;
+    transition: all 0.3s ease-out
 }
 
+// .event-container{
+//     margin: auto 0;
+//     // background-color: white;
+//     max-width: 1500px;
+    
+    
+// }
+
+.lineup{
+    font-family: ('poppins');
+    font-weight: 300;
+}
+
+.mainheader{
+    color:white;
+    text-align: center;
+    font-size: 40px;
+}
+
+.wrapper{
+    overflow: hidden;
+    position: relative;
+    width: 1000px;
+}
+
+.imagetext{
+    padding-top:10px;
+}
+
+.imagecontainer{
+    position: absolute;
+    bottom: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.418);
+  color: white;
+  
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: 700px;  
+}
+
+
+
 .title{
-    font-weight: $semibold;
+    font-family:('poppins');
+    font-weight: 800;
     font-size: 45px;
     color: $white;
     margin-bottom: 25px;
@@ -97,5 +139,4 @@ $seance: #7623A2;
     flex-basis: 100%;
     flex: 1;
     max-height: 500px;
-    background-color: pink;
   }

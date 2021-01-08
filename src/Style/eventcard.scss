@@ -62,7 +62,7 @@ $seance: #7623A2;
     box-sizing: border-box;
   }
   h1 { 
-    @include font('Poppins', regular, 37px);
+    @include font('Poppins', regular, 25px);
     color: $mariner;
     letter-spacing: -1.06px;
     margin: 0 0.4em 0.4em 0;

@@ -29,7 +29,7 @@ class Navbar extends React.Component {
 
 
                 <div className="logo">
-                    <h1> EVENT MASTER</h1>
+                    <h1> CONCERT.io </h1>
                 </div>
                 {this.props.user_state ? (<p className="pmenu"> {this.props.user_state.user.name}</p>) : <p className="pmenu"> Welcome </p>}
 
