@@ -24,7 +24,7 @@ class SearchBar extends React.Component {
         return (
             <div>
                 <form onSubmit={this.searchHandler}>
-                    <input className="mySearch" type="number" name="searchZipcode" placeholder="search" value={this.state.searchZipcode} onChange={this.changeHandler} />
+                    <input className="mySearch" type="number" name="searchZipcode" placeholder="Zipcode" value={this.state.searchZipcode} onChange={this.changeHandler} />
                     <button className="searchBtn"> <i className="fa fa-search"></i></button>
                 </form>
             </div>

@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom'
 import EventDetails from '../Components/EventDetails';
 import { addFavorite } from '../Redux/actions'
 import '../Style/eventlist.scss'
+import '../App.scss'
 
 class EventList extends React.Component {
 
@@ -113,7 +114,7 @@ class EventList extends React.Component {
                             <> 
                                 {!(this.props.initialEvents) ? <h1>Loading...</h1> :
                                     <>
-                                        <h1 className="mainheader"> Nearby Events </h1>
+                                        <h1 className="mainheader sign__word"> Nearby Events </h1>
                                         <ul className="card_list">
                                         {this.renderHomePageEvents()}
                                         </ul>

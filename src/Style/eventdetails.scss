@@ -22,7 +22,11 @@ $seance: #7623A2;
     max-width: 1000px;
     max-height: 500px;
 }
-
+.bold {
+    font-family:('poppins');
+    font-weight: bold;
+    font-size: 15px;
+}
 
 .date{
     font-family:('poppins');
@@ -69,7 +73,16 @@ $seance: #7623A2;
     font-family: ('poppins');
     font-weight: 300;
     color: white;
+    &-p{
+
+    }
+    &-h3 {
+        font-weight: bold;
+        color: white;
+        font-family: ('poppins');
+    }
 }
+
 
 .mainheader{
     color:white;

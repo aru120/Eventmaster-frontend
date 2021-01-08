@@ -1,0 +1,33 @@
+@import url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css");
+
+.menu li a:before {
+    font-family: FontAwesome;
+    text-indent: 0em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 100%;
+    font-size: 40px;
+    color: white;
+  }
+
+.menu li a.about:before {
+    content: "\f015";
+}
+
+.menu li a.signin:before {
+    content: "\f102";
+}
+
+.menu li a.logout:before {
+    content: "\f100";
+}
+
+.menu li a.saved:before {
+    content: "\f001";
+}
+
+.menu li a.login:before {
+    content: "\f101";
+}

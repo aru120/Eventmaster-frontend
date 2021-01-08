@@ -1,5 +1,61 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Poppins:800');
 
+.sign__word {
+    font-size: 100%;
+    // text-align: center;
+    line-height: 2;
+    color: #c6e2ff;
+    animation: neon .08s ease-in-out infinite alternate;
+  }
+
+
+
+/*-- Animation Keyframes --*/
+
+// animation
+
+@keyframes neon {
+  from {
+    text-shadow:
+    0 0 6px rgba(202,228,225,0.92),
+    0 0 30px rgba(202,228,225,0.42),
+    0 0 12px rgba(213, 77, 231, 0.52),
+    0 0 21px rgba(217, 30, 242, 0.92),
+    0 0 34px rgba(158, 42, 235, 0.88),
+    0 0 54px rgb(123, 14, 212);
+  }
+  to {
+    text-shadow:
+    0 0 6px rgba(202,228,225,0.98),
+    0 0 30px rgba(202,228,225,0.42),
+    0 0 12px rgba(242, 30, 231, 0.88),
+    0 0 22px rgba(200, 30, 242, 0.84),
+    0 0 38px rgba(242, 30, 231, 0.88),
+    0 0 60px rgb(30, 79, 242);
+  }
+}
+
+
+
+// Link
+.link {
+	position: absolute;
+	bottom: 10px; left: 10px;
+	color: #828282;
+	text-decoration: none;
+	
+	&:focus,
+	&:hover {
+    color: #c6e2ff;
+		text-shadow:
+    0 0 2px rgba(202,228,225,0.92),
+    0 0 10px rgba(202,228,225,0.34),
+    0 0 4px rgba(30,132,242,0.52),
+    0 0 7px rgba(30,132,242,0.92),
+    0 0 11px rgba(30,132,242,0.78),
+    0 0 16px rgba(30,132,242,0.92);
+	}
+}
 .App {
   text-align: center;
 }
@@ -134,9 +190,12 @@
     }
   }
   .logo{
+    line-height: 3;
     width: 100%;
-    height: 70px;
+    height: 14%;
     position: relative;
+    font-size: 20px;
+    color: white;
   }
     
   .pmenu{
@@ -151,6 +210,7 @@
     display: block;
     width: 100%;
     li{
+      line-height: 3;
       display: block;
       padding: 20px;
       width: 100%;
@@ -169,10 +229,12 @@
           color: white;
         }
       }
+      h4 {
+        line-height: 5;
+      }
     }
   }
 }
-
 
 a:link, a:visited{
   text-decoration: none;

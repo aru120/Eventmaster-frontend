@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { addFavorite } from '../Redux/actions'
 import { deleteFavorite } from '../Redux/actions'
 import '../Style/eventdetails.scss'
+import '../App.scss'
 
 class EventDetails extends React.Component {
 
@@ -133,15 +134,16 @@ class EventDetails extends React.Component {
         return (
             <div className="event-details">
                 <div className="event-container">
-                    <h1 className="title">{this.props.eventObj.title}</h1>
+                    <h1 className="title sign__word">{this.props.eventObj.title}</h1>
                     <div className="wrapper" >
                         <img className="event-details-img" src={this.props.eventObj.image} />
                         <div className="imagecontainer">
                             <div className="imagetext">
-                                <h5 className="date">Date: {this.dateHandler(this.props.eventObj.date)}</h5>
-                                <h5 className="date">Time: {this.timeHandler(this.props.eventObj.time)}</h5>
+                                <h5 className="date"><text className="bold">Date: </text>{this.dateHandler(this.props.eventObj.date)}</h5>
+                                <h5 className="date"><text className="bold">Time:</text> {this.timeHandler(this.props.eventObj.time)}</h5>
                                 <br />
-                                <h5 className="date">Venue: {this.props.eventObj.venue} </h5>
+                                <h5 className="bold">Venue</h5>
+                                <h5 className="date">{this.props.eventObj.venue}</h5>
                                 <h5 className="date" >{this.props.eventObj.address}</h5>
                                 <h5 className="date" >{this.props.eventObj.city}, {this.props.eventObj.state}</h5>
                                 <h5 className="date">{this.props.eventObj.zipcode}</h5>
@@ -152,7 +154,7 @@ class EventDetails extends React.Component {
 
                 <br/>
                 <div>
-                    {this.props.eventObj.artists.length === 0 ? null : <h3 className="lineup">Lineup: {this.props.eventObj.artists.map(artist => <p className="lineup"> {artist} </p>)}</h3>}
+                    {this.props.eventObj.artists.length === 0 ? null : <h3 className="lineup-h3">Lineup: {this.props.eventObj.artists.map(artist => <p className="lineup"> {artist} </p>)}</h3>}
                 </div>
 
 
